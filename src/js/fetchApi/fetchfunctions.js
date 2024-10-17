@@ -1,15 +1,15 @@
-import { urlPokeApi } from "../constants/constants.js"
+import { urlPokeApi } from "../constants/constants.js";
+import { showError } from "../errors/errors.js";
 
-export async function listAllPokemons(urlApi = urlPokeApi){
-    // try{
+export async function listAllPokemons(urlApi = urlPokeApi) {
+  try {
+    const data = await fetch(urlApi);
+    const response = await data.json();
 
-    //     const data = await fetch(urlApi);
-    //     const json = await data.json();
-
-    //     console.log("pokemons: ", json);
-    //     return json.results;
-
-    // }catch(error){
-    //     throw Error(error.message)
-    // }
+    return response;
+  } catch (error) {
+    showError(
+      "Ops! Um erro inesperado ocorreu ao carregar a lista de pokémons"
+    );
+  }
 }
